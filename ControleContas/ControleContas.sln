@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - IoC", "04 - IoC", "{40
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - MVC WebApp", "05 - MVC WebApp", "{D312F392-3407-4CB3-9753-CB0248F2B068}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleContas.Domain", "ControleContas.Domain\ControleContas.Domain.csproj", "{4841A702-226C-488C-ACBF-8A65A0A419C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleContas.Domain", "ControleContas.Domain\ControleContas.Domain.csproj", "{4841A702-226C-488C-ACBF-8A65A0A419C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleContas.Application", "ControleContas.Application\ControleContas.Application.csproj", "{CE293903-72D5-4538-85E9-8A90128CF9C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleContas.Application", "ControleContas.Application\ControleContas.Application.csproj", "{CE293903-72D5-4538-85E9-8A90128CF9C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleContas.Infra.Data", "ControleContas.Infra.Data\ControleContas.Infra.Data.csproj", "{F964BE3E-A4CD-461E-9C4D-76F14D742892}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleContas.Infra.Data", "ControleContas.Infra.Data\ControleContas.Infra.Data.csproj", "{F964BE3E-A4CD-461E-9C4D-76F14D742892}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleContas.IoC", "ControleContas.IoC\ControleContas.IoC.csproj", "{AB152F90-18AF-4660-B2FC-EF650E23C3B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ControleContas.IoC", "ControleContas.IoC\ControleContas.IoC.csproj", "{AB152F90-18AF-4660-B2FC-EF650E23C3B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCWebApp", "MVCWebApp\MVCWebApp.csproj", "{A8EC1A9C-CD98-42A6-BBFA-E9E2E2336ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCWebApp", "MVCWebApp\MVCWebApp.csproj", "{A8EC1A9C-CD98-42A6-BBFA-E9E2E2336ECE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using ControleContas.Domain.Entities;
+using ControleContas.Infra.Data.EntityConfigurations;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleContas.Infra.Data.Context
@@ -8,6 +10,14 @@ namespace ControleContas.Infra.Data.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        public DbSet<Categorias> Categorias { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new CategoriasConfiguration());
         }
     }
 }

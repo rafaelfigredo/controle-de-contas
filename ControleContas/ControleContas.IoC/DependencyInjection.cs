@@ -1,15 +1,14 @@
-﻿using ControleContas.Infra.Data.Context;
+﻿using ControleContas.Application.Interfaces;
+using ControleContas.Application.Services;
+using ControleContas.Domain.Interfaces;
+using ControleContas.Infra.Data.Context;
+using ControleContas.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ControleContas.Infra.Data
+namespace ControleContas.IoC
 {
     public static class DependencyInjection
     {
@@ -21,6 +20,9 @@ namespace ControleContas.Infra.Data
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ICategoriasRepository, CategoriasRepository>();
+            services.AddScoped<ICategoriasService, CategoriasService>();
 
             return services;
         }
