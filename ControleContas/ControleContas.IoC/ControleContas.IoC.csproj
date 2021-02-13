@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ControleContas.Application\ControleContas.Application.csproj" />
+    <ProjectReference Include="..\ControleContas.Domain\ControleContas.Domain.csproj" />
+    <ProjectReference Include="..\ControleContas.Infra.Data\ControleContas.Infra.Data.csproj" />
+  </ItemGroup>
+
+</Project>

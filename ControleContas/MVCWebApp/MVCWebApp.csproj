@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-MVCWebApp-75319A10-6332-47A8-A331-F419E5605E59</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ControleContas.Infra.Data\ControleContas.Infra.Data.csproj" />
+    <ProjectReference Include="..\ControleContas.IoC\ControleContas.IoC.csproj" />
+  </ItemGroup>
+
+</Project>
