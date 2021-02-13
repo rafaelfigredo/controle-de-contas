@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ControleContas.Application\ControleContas.Application.csproj" />
-    <ProjectReference Include="..\ControleContas.Infra.Data\ControleContas.Infra.Data.csproj" />
+    <ProjectReference Include="..\ControleContas.IoC\ControleContas.IoC.csproj" />
   </ItemGroup>
 
 </Project>
