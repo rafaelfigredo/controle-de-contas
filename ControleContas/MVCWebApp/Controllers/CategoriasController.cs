@@ -50,6 +50,18 @@ namespace MVCWebApp.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Detalhes(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var categoria = await _categoriasService.GetById(id);
+
+            if (categoria == null) return NotFound();
+
+            return View(categoria);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Editar(int? id)
         {
             if (id == null) return NotFound();
@@ -80,6 +92,26 @@ namespace MVCWebApp.Controllers
             }
 
             return View(categoria);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Excluir(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var categoria = await _categoriasService.GetById(id);
+
+            if (categoria == null) return NotFound();
+
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Excluir([Bind("Id,Nome,Cor")] CategoriasViewModel categoria)
+        {
+            _categoriasService.Remove(categoria.Id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
