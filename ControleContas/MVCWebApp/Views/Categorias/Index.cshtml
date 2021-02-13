@@ -13,7 +13,7 @@
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <a asp-action="Cadastrar" title="Cadastrar" class="btn btn-primary">
-            <span>Cadastrar</span>
+            <span>Cadastrar <i class="bi bi-plus-circle"></i></span>
         </a>
     </div>
 </div>
@@ -26,7 +26,7 @@
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Id)</th>
                         <th>@Html.DisplayNameFor(model => model.Nome)</th>
-                        <th>@Html.DisplayNameFor(model => model.Cor)</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -40,20 +40,18 @@
                             <td>
                                 @item.Nome
                             </td>
-                            <td style="background-color: #@item.Cor;">
-                                @item.Cor
+                            <td>
+                                <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@item.Cor;"></div>
                             </td>
                             <td>
-                                <a asp-action="Editar" asp-route-id="@item.Id" title="Editar" class="btn btn-warning">
-                                    <span>Editar</span>
+                                <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-sm btn-info">
+                                    <span>Detalhes <i class="bi bi-eye"></i></span>
                                 </a>
-
-                                <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-info">
-                                    <span>Detalhes</span>
+                                <a asp-action="Editar" asp-route-id="@item.Id" title="Editar" class="btn btn-sm btn-warning">
+                                    <span>Editar <i class="bi bi-wrench"></i></span>
                                 </a>
-
-                                <a asp-action="Excluir" asp-route-id="@item.Id" title="Excluir" class="btn btn-danger">
-                                    <span>Excluir</span>
+                                <a asp-action="Excluir" asp-route-id="@item.Id" title="Excluir" class="btn btn-sm btn-danger">
+                                    <span>Excluir <i class="bi bi-trash"></i></span>
                                 </a>
                             </td>
                         </tr>
