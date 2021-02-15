@@ -18,6 +18,10 @@ namespace ControleContas.Infra.Data.Context
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new CategoriasConfiguration());
+            builder.ApplyConfiguration(new ContasConfiguration());
+            builder.ApplyConfiguration(new ContasTiposConfiguration());
+            builder.ApplyConfiguration(new LancamentosConfiguration());
+            builder.ApplyConfiguration(new ParcelasConfiguration());
         }
     }
 }
