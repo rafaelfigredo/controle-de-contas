@@ -24,6 +24,9 @@ namespace ControleContas.IoC
             services.AddScoped<ICategoriasRepository, CategoriasRepository>();
             services.AddScoped<ICategoriasService, CategoriasService>();
 
+            services.AddScoped<IContasTiposRepository, ContasTiposRepository>();
+            services.AddScoped<IContasTiposService, ContasTiposService>();
+
             return services;
         }
     }

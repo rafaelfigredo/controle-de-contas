@@ -9,6 +9,7 @@ namespace ControleContas.Application.Mappings
         public ViewModelToDomainMappingProfile()
         {
             CreateMap<CategoriasViewModel, Categorias>();
+            CreateMap<ContasTiposViewModel, ContasTipos>();
         }
     }
 }

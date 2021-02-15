@@ -13,6 +13,10 @@ namespace ControleContas.Infra.Data.Context
         }
 
         public DbSet<Categorias> Categorias { get; set; }
+        public DbSet<Contas> Contas { get; set; }
+        public DbSet<ContasTipos> ContasTipos { get; set; }
+        public DbSet<Lancamentos> Lancamentos { get; set; }
+        public DbSet<Parcelas> Parcelas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
