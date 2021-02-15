@@ -5,6 +5,11 @@ namespace ControleContas.Domain.Entities
 {
     public class Lancamentos
     {
+        public Lancamentos()
+        {
+            Parcelas = new HashSet<Parcelas>();
+        }
+
         public int Id { get; set; }
         public string Descricao { get; set; }
         public decimal ValorTotal { get; set; }
@@ -13,8 +18,8 @@ namespace ControleContas.Domain.Entities
         public int CategoriasId { get; set; }
         public DateTime DataCompra { get; set; }
 
-        public virtual Contas Contas { get; set; }
         public virtual Categorias Categorias { get; set; }
+        public virtual Contas Contas { get; set; }
         public virtual ICollection<Parcelas> Parcelas { get; set; }
     }
 }

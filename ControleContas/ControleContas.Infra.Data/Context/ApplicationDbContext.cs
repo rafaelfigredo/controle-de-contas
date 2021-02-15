@@ -11,7 +11,6 @@ namespace ControleContas.Infra.Data.Context
             : base(options)
         {
         }
-
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Contas> Contas { get; set; }
         public DbSet<ContasTipos> ContasTipos { get; set; }

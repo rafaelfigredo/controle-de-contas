@@ -18,7 +18,7 @@ namespace ControleContas.Infra.Data.Repositories
 
         public async Task<IEnumerable<ContasTipos>> GetAll()
         {
-            return await _context.ContasTipos.ToListAsync();
+            return await _context.ContasTipos.Include(x => x.Contas).ToListAsync();
         }
 
         public async Task<ContasTipos> GetById(int? id)

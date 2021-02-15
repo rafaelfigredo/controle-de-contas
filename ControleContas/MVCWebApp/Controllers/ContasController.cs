@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace MVCWebApp.Controllers
 {
-    public class ContasTiposController : Controller
+    public class ContasController : Controller
     {
-        private readonly IContasTiposService _contastiposService;
+        private readonly IContasService _contasService;
 
-        public ContasTiposController(IContasTiposService contastiposService)
+        public ContasController(IContasService contasService)
         {
-            _contastiposService = contastiposService;
+            _contasService = contasService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _contastiposService.GetAll();
+            var result = await _contasService.GetAll();
             return View(result);
         }
 
@@ -30,13 +30,13 @@ namespace MVCWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Cadastrar([Bind("Id,Nome")] ContasTiposViewModel contastipos)
+        public IActionResult Cadastrar(ContasViewModel contas)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _contastiposService.Add(contastipos);
+                    _contasService.Add(contas);
                 }
                 catch (Exception)
                 {
@@ -46,7 +46,7 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(contastipos);
+            return View(contas);
         }
 
         [HttpGet]
@@ -54,11 +54,11 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contastipos = await _contastiposService.GetById(id);
+            var contas = await _contasService.GetById(id);
 
-            if (contastipos == null) return NotFound();
+            if (contas == null) return NotFound();
 
-            return View(contastipos);
+            return View(contas);
         }
 
         [HttpGet]
@@ -66,22 +66,22 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contastipos = await _contastiposService.GetById(id);
+            var contas = await _contasService.GetById(id);
 
-            if (contastipos == null) return NotFound();
+            if (contas == null) return NotFound();
 
-            return View(contastipos);
+            return View(contas);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Editar([Bind("Id,Nome")] ContasTiposViewModel contatipos)
+        public IActionResult Editar(ContasViewModel contatipos)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _contastiposService.Update(contatipos);
+                    _contasService.Update(contatipos);
                 }
                 catch (Exception)
                 {
@@ -99,18 +99,18 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contastipos = await _contastiposService.GetById(id);
+            var contas = await _contasService.GetById(id);
 
-            if (contastipos == null) return NotFound();
+            if (contas == null) return NotFound();
 
-            return View(contastipos);
+            return View(contas);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Excluir([Bind("Id,Nome")] ContasTiposViewModel contatipos)
+        public IActionResult Excluir(ContasViewModel contatipos)
         {
-            _contastiposService.Remove(contatipos.Id);
+            _contasService.Remove(contatipos.Id);
             return RedirectToAction(nameof(Index));
         }
     }

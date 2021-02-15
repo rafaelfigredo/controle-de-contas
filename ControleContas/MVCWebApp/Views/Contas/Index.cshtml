@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ControleContas.Application.ViewModels.ContasTiposViewModel>
+﻿@model IEnumerable<ControleContas.Application.ViewModels.ContasViewModel>
 
 @{
-    ViewData["Title"] = "Gerenciamento de Tipo de Contas";
+    ViewData["Title"] = "Gerenciamento de Contas";
 }
 
 <div class="row">
@@ -26,6 +26,9 @@
                     <tr>
                         <th>@Html.DisplayNameFor(model => model.Id)</th>
                         <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.ContasTipos.Nome)</th>
+                        <th>@Html.DisplayNameFor(model => model.VencimentoDia)</th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -38,6 +41,15 @@
                             </td>
                             <td>
                                 @item.Nome
+                            </td>
+                            <td>
+                                @item.ContasTipos.Nome
+                            </td>
+                            <td>
+                                @item.VencimentoDia
+                            </td>
+                            <td>
+                                <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@item.Cor;"></div>
                             </td>
                             <td>
                                 <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-sm btn-info">

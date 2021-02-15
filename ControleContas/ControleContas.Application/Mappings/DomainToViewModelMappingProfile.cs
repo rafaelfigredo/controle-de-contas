@@ -10,6 +10,9 @@ namespace ControleContas.Application.Mappings
         {
             CreateMap<Categorias, CategoriasViewModel>();
             CreateMap<ContasTipos, ContasTiposViewModel>();
+            CreateMap<Contas, ContasViewModel>();
+            CreateMap<Lancamentos, LancamentosViewModel>();
+            CreateMap<Parcelas, ParcelasViewModel>();
         }
     }
 }

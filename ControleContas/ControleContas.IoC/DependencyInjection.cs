@@ -27,6 +27,15 @@ namespace ControleContas.IoC
             services.AddScoped<IContasTiposRepository, ContasTiposRepository>();
             services.AddScoped<IContasTiposService, ContasTiposService>();
 
+            services.AddScoped<IContasRepository, ContasRepository>();
+            services.AddScoped<IContasService, ContasService>();
+
+            services.AddScoped<ILancamentosRepository, LancamentosRepository>();
+            services.AddScoped<ILancamentosService, LancamentosService>();
+
+            services.AddScoped<IParcelasRepository, ParcelasRepository>();
+            services.AddScoped<IParcelasService, ParcelasService>();
+
             return services;
         }
     }
