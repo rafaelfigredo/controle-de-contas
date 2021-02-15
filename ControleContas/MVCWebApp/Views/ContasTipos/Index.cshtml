@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ControleContas.Application.ViewModels.ContasTiposViewModel>
+
+@{
+    ViewData["Title"] = "Gerenciamento de Tipo de Contas";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <a asp-action="Cadastrar" title="Cadastrar" class="btn btn-primary">
+            <span>Cadastrar <i class="bi bi-plus-circle"></i></span>
+        </a>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead style="font-weight: bold;">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.Id
+                            </td>
+                            <td>
+                                @item.Nome
+                            </td>
+                            <td>
+                                <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-sm btn-info">
+                                    <span>Detalhes <i class="bi bi-eye"></i></span>
+                                </a>
+                                <a asp-action="Editar" asp-route-id="@item.Id" title="Editar" class="btn btn-sm btn-warning">
+                                    <span>Editar <i class="bi bi-wrench"></i></span>
+                                </a>
+                                <a asp-action="Excluir" asp-route-id="@item.Id" title="Excluir" class="btn btn-sm btn-danger">
+                                    <span>Excluir <i class="bi bi-trash"></i></span>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

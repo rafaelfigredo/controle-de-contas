@@ -1,0 +1,28 @@
+﻿@model ControleContas.Application.ViewModels.ContasTiposViewModel
+
+@{
+    ViewData["Title"] = "Detalhes do Tipo de Conta";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar à lista</a>
+</div>
