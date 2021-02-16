@@ -11,7 +11,7 @@ namespace ControleContas.Application.ViewModels
         [Required(ErrorMessage = "Nome da categoria é obrigatório")]
         [MinLength(1)]
         [MaxLength(50)]
-        [DisplayName("Nome")]
+        [DisplayName("Nome da categoria")]
         public string Nome { get; set; }
 
 

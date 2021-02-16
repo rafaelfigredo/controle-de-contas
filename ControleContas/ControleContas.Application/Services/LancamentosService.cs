@@ -3,6 +3,7 @@ using ControleContas.Application.Interfaces;
 using ControleContas.Application.ViewModels;
 using ControleContas.Domain.Entities;
 using ControleContas.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -47,6 +48,34 @@ namespace ControleContas.Application.Services
         {
             Lancamentos lancamentos = _lancamentosRepository.GetById(id).Result;
             _lancamentosRepository.Remove(lancamentos);
+        }
+
+        public void AddAndCreateParcelas(LancamentosViewModel lancamentos)
+        {
+            lancamentos.Parcelas = new List<ParcelasViewModel>();
+            for (int parcela = 1; parcela <= lancamentos.ParcelasTotal; parcela++)
+            {
+                lancamentos.Parcelas.Add(new ParcelasViewModel
+                {
+                    ParcelaNumero = parcela,
+                    ParcelaValor = lancamentos.ValorTotal / lancamentos.ParcelasTotal,
+                    AnoCobranca = getAnoCobranca(lancamentos.DataPrimeiraParcela, parcela),
+                    MesCobranca = getMesCobranca(lancamentos.DataPrimeiraParcela, parcela)
+                });
+            }
+
+            Lancamentos mapLancamentos = _mapper.Map<Lancamentos>(lancamentos);
+            _lancamentosRepository.Add(mapLancamentos);
+        }
+
+        private int getAnoCobranca(DateTime dataPrimeiraParcela, int parcela)
+        {
+            return dataPrimeiraParcela.AddMonths(parcela - 1).Year;
+        }
+
+        private int getMesCobranca(DateTime dataPrimeiraParcela, int parcela)
+        {
+            return dataPrimeiraParcela.AddMonths(parcela - 1).Month;
         }
     }
 }

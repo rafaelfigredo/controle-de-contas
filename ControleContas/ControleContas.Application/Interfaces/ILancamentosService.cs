@@ -12,5 +12,7 @@ namespace ControleContas.Application.Interfaces
         void Add(LancamentosViewModel lancamentos);
         void Update(LancamentosViewModel lancamentos);
         void Remove(int? id);
+
+        void AddAndCreateParcelas(LancamentosViewModel lancamentos);
     }
 }

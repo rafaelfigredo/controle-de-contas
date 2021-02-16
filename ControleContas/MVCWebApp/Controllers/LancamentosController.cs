@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace MVCWebApp.Controllers
 {
-    public class ContasController : Controller
+    public class LancamentosController : Controller
     {
-        private readonly IContasService _contasService;
+        private readonly ILancamentosService _lancamentosService;
 
-        public ContasController(IContasService contasService)
+        public LancamentosController(ILancamentosService lancamentosService)
         {
-            _contasService = contasService;
+            _lancamentosService = lancamentosService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var result = await _contasService.GetAll();
+            var result = await _lancamentosService.GetAll();
             return View(result);
         }
 
@@ -30,13 +30,13 @@ namespace MVCWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Cadastrar(ContasViewModel contas)
+        public IActionResult Cadastrar(LancamentosViewModel lancamentos)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _contasService.Add(contas);
+                    _lancamentosService.AddAndCreateParcelas(lancamentos);
                 }
                 catch (Exception)
                 {
@@ -46,7 +46,7 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(contas);
+            return View(lancamentos);
         }
 
         [HttpGet]
@@ -54,11 +54,11 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contas = await _contasService.GetById(id);
+            var lancamentos = await _lancamentosService.GetById(id);
 
-            if (contas == null) return NotFound();
+            if (lancamentos == null) return NotFound();
 
-            return View(contas);
+            return View(lancamentos);
         }
 
         [HttpGet]
@@ -66,22 +66,22 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contas = await _contasService.GetById(id);
+            var lancamentos = await _lancamentosService.GetById(id);
 
-            if (contas == null) return NotFound();
+            if (lancamentos == null) return NotFound();
 
-            return View(contas);
+            return View(lancamentos);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Editar(ContasViewModel contas)
+        public IActionResult Editar(LancamentosViewModel lancamentos)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _contasService.Update(contas);
+                    _lancamentosService.Update(lancamentos);
                 }
                 catch (Exception)
                 {
@@ -91,7 +91,7 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(contas);
+            return View(lancamentos);
         }
 
         [HttpGet]
@@ -99,18 +99,18 @@ namespace MVCWebApp.Controllers
         {
             if (id == null) return NotFound();
 
-            var contas = await _contasService.GetById(id);
+            var lancamentos = await _lancamentosService.GetById(id);
 
-            if (contas == null) return NotFound();
+            if (lancamentos == null) return NotFound();
 
-            return View(contas);
+            return View(lancamentos);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Excluir(ContasViewModel contas)
+        public IActionResult Excluir(LancamentosViewModel lancamentos)
         {
-            _contasService.Remove(contas.Id);
+            _lancamentosService.Remove(lancamentos.Id);
             return RedirectToAction(nameof(Index));
         }
     }

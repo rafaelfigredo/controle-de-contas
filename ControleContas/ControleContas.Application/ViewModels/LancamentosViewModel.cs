@@ -23,7 +23,7 @@ namespace ControleContas.Application.ViewModels
         [Column(TypeName = "money")]
         public decimal ValorTotal { get; set; }
 
-        [DisplayName("Quantidade de Parcelas")]
+        [DisplayName("Qtde. de Parcelas")]
         [Required(ErrorMessage = "Quantidade de parcelas é obrigatório")]
         public int ParcelasTotal { get; set; }
 
@@ -40,8 +40,13 @@ namespace ControleContas.Application.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataCompra { get; set; }
 
+        [Display(Name = "Data 1ª parcela")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime DataPrimeiraParcela { get; set; }
+
         public CategoriasViewModel Categorias { get; set; }
         public virtual ContasViewModel Contas { get; set; }
-        public virtual ICollection<ParcelasViewModel> Parcelas { get; set; }
+        public virtual List<ParcelasViewModel> Parcelas { get; set; }
     }
 }

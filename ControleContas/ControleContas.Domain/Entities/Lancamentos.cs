@@ -17,6 +17,7 @@ namespace ControleContas.Domain.Entities
         public int ContasId { get; set; }
         public int CategoriasId { get; set; }
         public DateTime DataCompra { get; set; }
+        public DateTime DataPrimeiraParcela { get; set; }
 
         public virtual Categorias Categorias { get; set; }
         public virtual Contas Contas { get; set; }

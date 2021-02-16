@@ -11,7 +11,7 @@ namespace ControleContas.Application.ViewModels
         [Required(ErrorMessage = "Nome do tipo de conta é obrigatório")]
         [MinLength(1)]
         [MaxLength(50)]
-        [DisplayName("Nome")]
+        [DisplayName("Nome do tipo")]
         public string Nome { get; set; }
     }
 }

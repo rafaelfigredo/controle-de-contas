@@ -3,6 +3,7 @@ using ControleContas.Domain.Interfaces;
 using ControleContas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ControleContas.Infra.Data.Repositories
@@ -18,12 +19,17 @@ namespace ControleContas.Infra.Data.Repositories
 
         public async Task<IEnumerable<Lancamentos>> GetAll()
         {
-            return await _context.Lancamentos.ToListAsync();
+            return await _context.Lancamentos.Include(x => x.Contas).Include(x => x.Categorias).ToListAsync();
         }
 
         public async Task<Lancamentos> GetById(int? id)
         {
-            return await _context.Lancamentos.FindAsync(id);
+            return await _context.Lancamentos
+                .Include(x => x.Contas)
+                .Include(x => x.Categorias)
+                .Include(x => x.Parcelas)
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
 
 

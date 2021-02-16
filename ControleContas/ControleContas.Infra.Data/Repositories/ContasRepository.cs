@@ -3,6 +3,7 @@ using ControleContas.Domain.Interfaces;
 using ControleContas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ControleContas.Infra.Data.Repositories
@@ -23,7 +24,7 @@ namespace ControleContas.Infra.Data.Repositories
 
         public async Task<Contas> GetById(int? id)
         {
-            return await _context.Contas.FindAsync(id);
+            return await _context.Contas.Include(x => x.ContasTipos).Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
 

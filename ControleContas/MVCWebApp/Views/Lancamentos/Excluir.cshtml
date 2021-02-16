@@ -1,0 +1,72 @@
+﻿@model ControleContas.Application.ViewModels.LancamentosViewModel
+
+@{
+    ViewData["Title"] = "Excluir Lançamento";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<h3>Você tem certeza de que deseja excluir esse lançamento?</h3>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCompra)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataCompra)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataPrimeiraParcela)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataPrimeiraParcela)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ParcelasTotal)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ParcelasTotal)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contas.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contas.Nome)
+            <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@Model.Contas.Cor;"></div>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Categorias.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Categorias.Nome)
+            <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@Model.Categorias.Cor;"></div>
+        </dd>
+    </dl>
+
+    <form asp-action="Excluir">
+        <button type="submit" name="Excluir" id="Excluir" class="btn btn-danger"><span>Excluir <i class="bi bi-trash"></i></span></button>
+        <a asp-action="Index">Voltar à lista</a>
+    </form>
+</div>
+<div>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.Id }) |
+    <a asp-action="Index">Voltar à lista</a>
+</div>

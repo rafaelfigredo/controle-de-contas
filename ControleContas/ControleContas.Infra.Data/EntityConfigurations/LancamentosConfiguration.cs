@@ -16,6 +16,7 @@ namespace ControleContas.Infra.Data.EntityConfigurations
             builder.Property(p => p.ContasId).IsRequired();
             builder.Property(p => p.CategoriasId).IsRequired();
             builder.Property(p => p.DataCompra).IsRequired();
+            builder.Property(p => p.DataPrimeiraParcela).IsRequired();
 
             //Foreing Key
             builder.HasMany(e => e.Parcelas).WithOne(x => x.Lancamentos).HasForeignKey(s => s.LancamentosId);
