@@ -15,8 +15,6 @@ namespace ControleContas.Application.ViewModels
 
         [DisplayName("Valor da parcela")]
         [Required(ErrorMessage = "Valor da parcela é obrigatório")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "money")]
         public decimal ParcelaValor { get; set; }
 
         [DisplayName("Ano cobrança")]

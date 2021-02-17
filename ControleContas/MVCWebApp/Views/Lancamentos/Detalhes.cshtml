@@ -45,47 +45,58 @@
             @Html.DisplayFor(model => model.ParcelasTotal)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contas.ContasTipos.Nome)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contas.ContasTipos.Nome)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Contas.Nome)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Contas.Nome)
-            <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@Model.Contas.Cor;"></div>
+            <div style="width: 15px;height:15px;border:1px solid #000;background-color:@Model.Contas.Cor;"></div>
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Categorias.Nome)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Categorias.Nome)
-            <div style="width: 15px;height:15px;border:1px solid #000;background-color:#@Model.Categorias.Cor;"></div>
+            <div style="width: 15px;height:15px;border:1px solid #000;background-color:@Model.Categorias.Cor;"></div>
         </dd>
     </dl>
 </div>
 <h2>Parcelas:</h2>
-<hr />
-<div>
-    <dl class="row">
-        @foreach (var item in Model.Parcelas.OrderBy(x => x.ParcelaNumero))
-        {
-            <dt class="col-sm-2">
-                Nro. Parcela:
-            </dt>
-            <dd class="col-sm-10">
-                <strong>@item.ParcelaNumero</strong>
-            </dd>
-            <dt class="col-sm-2">
-                Valor Parcela:
-            </dt>
-            <dd class="col-sm-10">
-                @item.ParcelaValor.ToString("C")
-            </dd>
-            <dt class="col-sm-2">
-                Cobrança:
-            </dt>
-            <dd class="col-sm-10">
-                @item.MesCobranca.ToString("D2")/@item.AnoCobranca.ToString("D4")
-            </dd>
-        }
-    </dl>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead style="font-weight: bold;">
+                    <tr>
+                        <th>Nro. Parcela</th>
+                        <th>Valor Parcela</th>
+                        <th>Cobrança</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Parcelas.OrderBy(x => x.ParcelaNumero))
+                    {
+                        <tr>
+                            <td>
+                                <strong>@item.ParcelaNumero</strong>
+                            </td>
+                            <td>
+                                @item.ParcelaValor.ToString("C")
+                            </td>
+                            <td>
+                                @item.MesCobranca.ToString("D2")/@item.AnoCobranca.ToString("D4")
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <div>

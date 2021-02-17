@@ -19,13 +19,19 @@ namespace ControleContas.Infra.Data.Repositories
 
         public async Task<IEnumerable<Lancamentos>> GetAll()
         {
-            return await _context.Lancamentos.Include(x => x.Contas).Include(x => x.Categorias).ToListAsync();
+            return await _context.Lancamentos
+                .Include(x => x.Contas)
+                .Include(x => x.Contas.ContasTipos)
+                .Include(x => x.Categorias)
+                .Include(x => x.Parcelas)
+                .ToListAsync();
         }
 
         public async Task<Lancamentos> GetById(int? id)
         {
             return await _context.Lancamentos
                 .Include(x => x.Contas)
+                .Include(x => x.Contas.ContasTipos)
                 .Include(x => x.Categorias)
                 .Include(x => x.Parcelas)
                 .Where(x => x.Id == id)

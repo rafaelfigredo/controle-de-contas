@@ -13,14 +13,13 @@ namespace ControleContas.Application.ViewModels
 
         [DisplayName("Descrição do lançamento")]
         [Required(ErrorMessage = "Descrição do lançamento é obrigatório")]
-        [MinLength(1)]
-        [MaxLength(100)]
+        [MinLength(1, ErrorMessage = "A descição do lançamneto precisa ter no mínimo 2 caracteres")]
+        [MaxLength(100, ErrorMessage = "A descrição do lançamento precisa ter no máximo 100 caracteres")]
         public string Descricao { get; set; }
 
         [DisplayName("Valor Total")]
         [Required(ErrorMessage = "Valor é obrigatório")]
-        [DataType(DataType.Currency)]
-        [Column(TypeName = "money")]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal ValorTotal { get; set; }
 
         [DisplayName("Qtde. de Parcelas")]

@@ -29,6 +29,7 @@
                         <th>Data Compra</th>
                         <th>Valor Total</th>
                         <th>Qtde Parcelas</th>
+                        <th>Tipo</th>
                         <th>Conta</th>
                         <th>Categoria</th>
                         <th></th>
@@ -37,40 +38,43 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @item.Id
-                            </td>
-                            <td>
-                                @item.Descricao
-                            </td>
-                            <td>
-                                @item.DataCompra
-                            </td>
-                            <td>
-                                @item.ValorTotal
-                            </td>
-                            <td>
-                                @item.ParcelasTotal
-                            </td>
-                            <td>
-                                @item.Contas.Nome
-                            </td>
-                            <td>
-                                @item.Categorias.Nome
-                            </td>
-                            <td>
-                                <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-sm btn-info">
-                                    <span>Detalhes <i class="bi bi-eye"></i></span>
-                                </a>
-                                <a asp-action="Editar" asp-route-id="@item.Id" title="Editar" class="btn btn-sm btn-warning">
-                                    <span>Editar <i class="bi bi-wrench"></i></span>
-                                </a>
-                                <a asp-action="Excluir" asp-route-id="@item.Id" title="Excluir" class="btn btn-sm btn-danger">
-                                    <span>Excluir <i class="bi bi-trash"></i></span>
-                                </a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @item.Id
+                        </td>
+                        <td>
+                            @item.Descricao
+                        </td>
+                        <td>
+                            @item.DataCompra.ToString("dd/MM/yyyy")
+                        </td>
+                        <td>
+                            @item.ValorTotal.ToString("C")
+                        </td>
+                        <td>
+                            @item.ParcelasTotal
+                        </td>
+                        <td>
+                            @item.Contas.ContasTipos.Nome
+                        </td>
+                        <td>
+                            @item.Contas.Nome
+                        </td>
+                        <td>
+                            @item.Categorias.Nome
+                        </td>
+                        <td>
+                            <a asp-action="Detalhes" asp-route-id="@item.Id" title="Detalhes" class="btn btn-sm btn-info">
+                                <span>Detalhes <i class="bi bi-eye"></i></span>
+                            </a>
+                            <a asp-action="Editar" asp-route-id="@item.Id" title="Editar" class="btn btn-sm btn-warning">
+                                <span>Editar <i class="bi bi-wrench"></i></span>
+                            </a>
+                            <a asp-action="Excluir" asp-route-id="@item.Id" title="Excluir" class="btn btn-sm btn-danger">
+                                <span>Excluir <i class="bi bi-trash"></i></span>
+                            </a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

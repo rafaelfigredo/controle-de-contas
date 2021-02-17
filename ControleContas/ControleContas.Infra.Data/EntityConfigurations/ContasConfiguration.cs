@@ -12,7 +12,7 @@ namespace ControleContas.Infra.Data.EntityConfigurations
             builder.Property(f => f.Id).ValueGeneratedOnAdd();
             builder.Property(p => p.Nome).HasMaxLength(50).IsRequired();
             builder.Property(p => p.ContasTiposId).IsRequired();
-            builder.Property(p => p.Cor).HasMaxLength(6).IsRequired();
+            builder.Property(p => p.Cor).HasMaxLength(7).IsRequired();
             builder.Property(p => p.VencimentoDia).HasMaxLength(6).IsRequired();
 
             //Foreing Key

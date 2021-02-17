@@ -22,17 +22,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="DataCompra" class="control-label"></label>
-                <input asp-for="DataCompra" class="form-control" />
+                <input asp-for="DataCompra" type="text" asp-format="{0:dd/MM/yyyy}" class="form-control" />
                 <span asp-validation-for="DataCompra" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DataPrimeiraParcela" class="control-label"></label>
-                <input asp-for="DataPrimeiraParcela" readonly class="form-control" />
+                <input asp-for="DataPrimeiraParcela" type="text" asp-format="{0:dd/MM/yyyy}" readonly class="form-control" />
                 <span asp-validation-for="DataPrimeiraParcela" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" readonly class="form-control" />
+                <input asp-for="ValorTotal" type="text" readonly class="form-control" />
                 <span asp-validation-for="ValorTotal" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,7 +60,3 @@
 <div>
     <a asp-action="Index">Voltar à lista</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
