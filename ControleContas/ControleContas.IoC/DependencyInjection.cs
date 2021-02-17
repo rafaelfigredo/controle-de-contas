@@ -1,8 +1,12 @@
 ﻿using ControleContas.Application.Interfaces;
+using ControleContas.Application.Interfaces.Utils;
 using ControleContas.Application.Services;
+using ControleContas.Application.Services.Utils;
 using ControleContas.Domain.Interfaces;
+using ControleContas.Domain.Interfaces.Utils;
 using ControleContas.Infra.Data.Context;
 using ControleContas.Infra.Data.Repositories;
+using ControleContas.Infra.Data.Repositories.Utils;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,6 +24,9 @@ namespace ControleContas.IoC
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IDropdownRepository, DropdownRepository>();
+            services.AddScoped<IDropdownService, DropdownService>();
 
             services.AddScoped<ICategoriasRepository, CategoriasRepository>();
             services.AddScoped<ICategoriasService, CategoriasService>();

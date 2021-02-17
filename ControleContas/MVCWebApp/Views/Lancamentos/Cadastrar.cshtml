@@ -37,12 +37,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="ContasId" class="control-label"></label>
-                <input asp-for="ContasId" class="form-control" />
+                <select asp-for="ContasId" asp-items="@ViewBag.ContasId" class="form-control"></select>
                 <span asp-validation-for="ContasId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoriasId" class="control-label"></label>
-                <input asp-for="CategoriasId" class="form-control" />
+                <select asp-for="CategoriasId" asp-items="@ViewBag.CategoriasId" class="form-control"></select>
                 <span asp-validation-for="CategoriasId" class="text-danger"></span>
             </div>
             <div class="form-group">

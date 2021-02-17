@@ -1,6 +1,8 @@
 ﻿using ControleContas.Application.Interfaces;
+using ControleContas.Application.Interfaces.Utils;
 using ControleContas.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Threading.Tasks;
 
@@ -9,10 +11,12 @@ namespace MVCWebApp.Controllers
     public class ContasController : Controller
     {
         private readonly IContasService _contasService;
+        private readonly IDropdownService _dropdownService;
 
-        public ContasController(IContasService contasService)
+        public ContasController(IContasService contasService, IDropdownService dropdownService)
         {
             _contasService = contasService;
+            _dropdownService = dropdownService;
         }
 
         [HttpGet]
@@ -25,6 +29,8 @@ namespace MVCWebApp.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            ViewBag.ContasTiposId = new SelectList(_dropdownService.GetContasTipos().Result, "Id", "Nome");
+
             return View();
         }
 
@@ -46,6 +52,7 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.ContasTiposId = new SelectList(_dropdownService.GetContasTipos().Result, "Id", "Nome");
             return View(contas);
         }
 
@@ -70,6 +77,7 @@ namespace MVCWebApp.Controllers
 
             if (contas == null) return NotFound();
 
+            ViewBag.ContasTiposId = new SelectList(_dropdownService.GetContasTipos().Result, "Id", "Nome");
             return View(contas);
         }
 
@@ -91,6 +99,7 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.ContasTiposId = new SelectList(_dropdownService.GetContasTipos().Result, "Id", "Nome");
             return View(contas);
         }
 

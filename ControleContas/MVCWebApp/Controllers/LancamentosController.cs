@@ -1,6 +1,8 @@
 ﻿using ControleContas.Application.Interfaces;
+using ControleContas.Application.Interfaces.Utils;
 using ControleContas.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Threading.Tasks;
 
@@ -9,10 +11,12 @@ namespace MVCWebApp.Controllers
     public class LancamentosController : Controller
     {
         private readonly ILancamentosService _lancamentosService;
+        private readonly IDropdownService _dropdownService;
 
-        public LancamentosController(ILancamentosService lancamentosService)
+        public LancamentosController(ILancamentosService lancamentosService, IDropdownService dropdownService)
         {
             _lancamentosService = lancamentosService;
+            _dropdownService = dropdownService;
         }
 
         [HttpGet]
@@ -25,6 +29,8 @@ namespace MVCWebApp.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            ViewBag.ContasId = new SelectList(_dropdownService.GetContas().Result, "Id", "Nome");
+            ViewBag.CategoriasId = new SelectList(_dropdownService.GetCategorias().Result, "Id", "Nome");
             return View();
         }
 
@@ -46,6 +52,8 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.ContasId = new SelectList(_dropdownService.GetContas().Result, "Id", "Nome");
+            ViewBag.CategoriasId = new SelectList(_dropdownService.GetCategorias().Result, "Id", "Nome");
             return View(lancamentos);
         }
 
@@ -70,6 +78,8 @@ namespace MVCWebApp.Controllers
 
             if (lancamentos == null) return NotFound();
 
+            ViewBag.ContasId = new SelectList(_dropdownService.GetContas().Result, "Id", "Nome");
+            ViewBag.CategoriasId = new SelectList(_dropdownService.GetCategorias().Result, "Id", "Nome");
             return View(lancamentos);
         }
 
@@ -91,6 +101,8 @@ namespace MVCWebApp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            ViewBag.ContasId = new SelectList(_dropdownService.GetContas().Result, "Id", "Nome");
+            ViewBag.CategoriasId = new SelectList(_dropdownService.GetCategorias().Result, "Id", "Nome");
             return View(lancamentos);
         }
 

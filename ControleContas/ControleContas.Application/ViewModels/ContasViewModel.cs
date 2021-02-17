@@ -15,6 +15,7 @@ namespace ControleContas.Application.ViewModels
         [DisplayName("Nome da conta")]
         public string Nome { get; set; }
 
+        [DisplayName("Tipo de conta")]
         [Required(ErrorMessage = "Tipo de Conta é obrigatório")]
         public int ContasTiposId { get; set; }
 

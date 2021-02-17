@@ -27,27 +27,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="DataPrimeiraParcela" class="control-label"></label>
-                <input asp-for="DataPrimeiraParcela" class="form-control" />
+                <input asp-for="DataPrimeiraParcela" readonly class="form-control" />
                 <span asp-validation-for="DataPrimeiraParcela" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" />
+                <input asp-for="ValorTotal" readonly class="form-control" />
                 <span asp-validation-for="ValorTotal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ParcelasTotal" class="control-label"></label>
-                <input asp-for="ParcelasTotal" class="form-control" />
+                <input asp-for="ParcelasTotal" readonly class="form-control" />
                 <span asp-validation-for="ParcelasTotal" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ContasId" class="control-label"></label>
-                <input asp-for="ContasId" class="form-control" />
+                <select asp-for="ContasId" asp-items="@ViewBag.ContasId" class="form-control"></select>
                 <span asp-validation-for="ContasId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CategoriasId" class="control-label"></label>
-                <input asp-for="CategoriasId" class="form-control" />
+                <select asp-for="CategoriasId" asp-items="@ViewBag.CategoriasId" class="form-control"></select>
                 <span asp-validation-for="CategoriasId" class="text-danger"></span>
             </div>
             <div class="form-group">
