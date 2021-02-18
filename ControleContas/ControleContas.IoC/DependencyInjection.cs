@@ -43,6 +43,8 @@ namespace ControleContas.IoC
             services.AddScoped<IParcelasRepository, ParcelasRepository>();
             services.AddScoped<IParcelasService, ParcelasService>();
 
+            services.AddScoped<IDashboardService, DashboardService>();
+
             return services;
         }
     }

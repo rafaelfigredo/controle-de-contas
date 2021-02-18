@@ -8,6 +8,7 @@ namespace ControleContas.Domain.Interfaces
     {
         Task<IEnumerable<Lancamentos>> GetAll();
         Task<Lancamentos> GetById(int? id);
+        Task<IEnumerable<Lancamentos>> GetParcelasDashboard();
 
         void Add(Lancamentos lancamentos);
         void Update(Lancamentos lancamentos);

@@ -56,5 +56,15 @@ namespace ControleContas.Infra.Data.Repositories
             _context.Remove(lancamentos);
             _context.SaveChanges();
         }
+
+        public async Task<IEnumerable<Lancamentos>> GetParcelasDashboard()
+        {
+            return await _context.Lancamentos
+                .Include(x => x.Parcelas)
+                .Include(x => x.Categorias)
+                .Include(x => x.Contas)
+                .Include(x => x.Contas.ContasTipos)
+                .ToListAsync();
+        }
     }
 }
