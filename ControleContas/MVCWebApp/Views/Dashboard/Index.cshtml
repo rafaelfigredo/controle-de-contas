@@ -1,11 +1,16 @@
 ﻿@model ControleContas.Application.ViewModels.DashboardViewModel
 
+<link href="~/css/Dashboard/Index.css" rel="stylesheet" />
+
+<br />
+<h2>Lançamentos e parcelas por mês</h2>
+
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="table-responsive">
+        <div class="table-responsive table-fixed-columns">
             @if (Model != null && (Model.Calendario.Any() && Model.Lancamentos.Any()))
             {
-                <table class="table table-striped">
+                <table class="table table-striped table-fixed-columns">
                     <thead style="font-weight: bold;">
                         <tr>
                             <th>Lançamento</th>
@@ -21,16 +26,16 @@
                         @foreach (var item in Model.Lancamentos)
                         {
                             <tr>
-                                <td style="background-color:@item.Contas.Cor">
-                                    @item.Descricao
-                                </td>
+                                <th style="background-color:@item.Contas.Cor">
+                                    @item.Descricao (@item.ValorTotal.ToString("C") em @item.ParcelasTotal vezes)
+                                </th>
                                 @foreach (var calendario in Model.Calendario)
                                 {
                                     var parcela = item.Parcelas.Where(x => x.AnoCobranca == calendario.Ano && x.MesCobranca == calendario.Mes).FirstOrDefault();
                                     @if (parcela != null)
                                     {
-                                        <td style="background-color:@item.Categorias.Cor">
-                                            @parcela.ParcelaValor.ToString("C")
+                                        <td style="background-color:@item.Categorias.Cor;">
+                                            @parcela.ParcelaValor.ToString("C") (@parcela.Lancamentos.Contas.VencimentoDia.ToString("D2")/@parcela.MesCobranca.ToString("D2"))
                                         </td>
                                     }
                                     else
@@ -53,28 +58,55 @@
     </div>
 </div>
 
-<hr />
-<h2>Legendas</h2>
 <br />
+<h2>Totais por mês</h2>
+
 <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        Categorias:
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead style="font-weight: bold;">
+                    <tr>
+                        @foreach (var calendario in Model.Calendario)
+                        {
+                            <th>
+                                @calendario.Descricao
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var calendario in Model.Calendario)
+                        {
+                            <td>
+                                @Model.Lancamentos.Sum(x => x.Parcelas.Where(x => x.MesCobranca == calendario.Mes && x.AnoCobranca == calendario.Ano).Sum(x => x.ParcelaValor)).ToString("C")
+                            </td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-    @foreach (var item in Model.Categorias)
+</div>
+
+<hr />
+<br />
+<h5>Contas:</h5>
+<div class="row">
+    @foreach (var item in Model.Contas)
     {
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <div class="col-lg-1 col-md-3 col-sm-3 col-xs-4 col-xl-4" style="border: 1px solid #EEE;padding: 5px;">
             <div style="width: 15px;height:15px;border:1px solid #000;background-color:@item.Cor;"></div> @item.Nome
         </div>
     }
 </div>
 <br />
+<h5>Categorias:</h5>
 <div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-        Contas:
-    </div>
-    @foreach (var item in Model.Contas)
+    @foreach (var item in Model.Categorias)
     {
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <div class="col-lg-1 col-md-3 col-sm-3 col-xs-4 col-xl-4" style="border: 1px solid #EEE;padding: 5px;">
             <div style="width: 15px;height:15px;border:1px solid #000;background-color:@item.Cor;"></div> @item.Nome
         </div>
     }
