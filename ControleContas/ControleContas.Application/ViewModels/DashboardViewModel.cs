@@ -16,6 +16,6 @@ namespace ControleContas.Application.ViewModels
         public int Mes { get; set; }
         public int Ano { get; set; }
 
-        public string Descricao => $"{new DateTime(Ano, Mes, 1):MMM-yyyy}";
+        public string Descricao => $"{new DateTime(Ano, Mes, 1):MMM-yyyy}".ToUpper();
     }
 }
