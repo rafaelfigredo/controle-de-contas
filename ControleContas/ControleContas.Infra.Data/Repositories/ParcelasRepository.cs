@@ -1,5 +1,6 @@
 ﻿using ControleContas.Domain.Entities;
 using ControleContas.Domain.Interfaces;
+using ControleContas.Domain.ViewEntities;
 using ControleContas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -49,6 +50,22 @@ namespace ControleContas.Infra.Data.Repositories
         {
             _context.Remove(parcelas);
             _context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<DashCategoriasViewEntity>> GetChartDashCategoriasParcelas(int ano, int mes)
+        {
+            return await _context.Parcelas
+                .Include(x => x.Lancamentos.Categorias)
+                .Where(x => x.MesCobranca == mes)
+                .Where(x => x.AnoCobranca == ano)
+                .GroupBy(t => new { t.Lancamentos.Categorias.Id, t.Lancamentos.Categorias.Nome })
+                .Select(gp => new DashCategoriasViewEntity
+                {
+                    IdCategoria = gp.Key.Id,
+                    NomeCategoria = gp.Key.Nome,
+                    Valor = gp.Sum(x => x.ParcelaValor)
+                })
+                .ToListAsync();
         }
     }
 }

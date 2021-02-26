@@ -6,5 +6,6 @@ namespace ControleContas.Application.Interfaces
     public interface IDashboardService
     {
         Task<DashboardViewModel> GetDashboard();
+        Task<ChartDashCatogorias> GetChartDashCatogorias();
     }
 }

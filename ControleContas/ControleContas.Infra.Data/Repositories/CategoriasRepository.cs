@@ -3,6 +3,7 @@ using ControleContas.Domain.Interfaces;
 using ControleContas.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ControleContas.Infra.Data.Repositories

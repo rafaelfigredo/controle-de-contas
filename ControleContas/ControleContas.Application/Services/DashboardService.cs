@@ -3,6 +3,7 @@ using ControleContas.Application.Interfaces;
 using ControleContas.Application.ViewModels;
 using ControleContas.Domain.Entities;
 using ControleContas.Domain.Interfaces;
+using ControleContas.Domain.ViewEntities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,17 @@ namespace ControleContas.Application.Services
         private ILancamentosRepository _lancamentosRepository;
         private ICategoriasRepository _categoriasRepository;
         private IContasRepository _contasRepository;
+        private IParcelasRepository _parcelasRepository;
         private readonly IMapper _mapper;
 
         public DashboardService(ILancamentosRepository lancamentosRepository,
-            ICategoriasRepository categoriasRepository, IContasRepository contasRepository, IMapper mapper)
+            ICategoriasRepository categoriasRepository, IContasRepository contasRepository,
+            IParcelasRepository parcelasRepository, IMapper mapper)
         {
             _lancamentosRepository = lancamentosRepository;
             _categoriasRepository = categoriasRepository;
             _contasRepository = contasRepository;
+            _parcelasRepository = parcelasRepository;
             _mapper = mapper;
         }
 
@@ -39,23 +43,37 @@ namespace ControleContas.Application.Services
             return dashboard;
         }
 
+        public async Task<ChartDashCatogorias> GetChartDashCatogorias()
+        {
+            ChartDashCatogorias chart = new ChartDashCatogorias();
+            DateTime today = DateTime.Today;
+
+            IEnumerable<DashCategoriasViewEntity> result = await _parcelasRepository.GetChartDashCategoriasParcelas(today.Year, today.Month);
+            result = result.OrderBy(x => x.NomeCategoria).ThenBy(x => x.IdCategoria).ToList();
+
+            foreach (DashCategoriasViewEntity item in result)
+            {
+                chart.Categorias.Add(item.NomeCategoria);
+                chart.Valores.Add(item.Valor);
+            }
+
+            return chart;
+        }
+
         private async Task<IEnumerable<CategoriasViewModel>> GetCategorias()
         {
-
             IEnumerable<Categorias> result = await _categoriasRepository.GetAll();
             return _mapper.Map<IEnumerable<CategoriasViewModel>>(result).ToList().OrderBy(x => x.Nome);
         }
 
         private async Task<IEnumerable<ContasViewModel>> GetContas()
         {
-
             IEnumerable<Contas> result = await _contasRepository.GetAll();
             return _mapper.Map<IEnumerable<ContasViewModel>>(result).ToList().OrderBy(x => x.Nome);
         }
 
         private async Task<IEnumerable<LancamentosViewModel>> GetLancamentos()
         {
-
             IEnumerable<Lancamentos> result = await _lancamentosRepository.GetParcelasDashboard();
             return _mapper.Map<IEnumerable<LancamentosViewModel>>(result).ToList().OrderBy(x => x.Contas.Nome).ThenBy(x => x.Descricao);
         }
