@@ -45,10 +45,13 @@ namespace ControleContas.Application.Services
 
         public async Task<ChartDashCatogorias> GetChartDashCatogorias()
         {
-            ChartDashCatogorias chart = new ChartDashCatogorias();
             DateTime today = DateTime.Today;
 
-            IEnumerable<DashCategoriasViewEntity> result = await _parcelasRepository.GetChartDashCategoriasParcelas(today.Year, today.Month);
+            ChartDashCatogorias chart = new ChartDashCatogorias();
+            chart.Ano = today.Year;
+            chart.Mes = today.Month;
+
+            IEnumerable<DashCategoriasViewEntity> result = await _parcelasRepository.GetChartDashCategoriasParcelas(chart.Ano, chart.Mes);
             result = result.OrderBy(x => x.NomeCategoria).ThenBy(x => x.IdCategoria).ToList();
 
             foreach (DashCategoriasViewEntity item in result)
