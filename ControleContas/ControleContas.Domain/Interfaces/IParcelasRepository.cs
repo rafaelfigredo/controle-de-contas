@@ -10,6 +10,7 @@ namespace ControleContas.Domain.Interfaces
         Task<IEnumerable<Parcelas>> GetAll();
         Task<Parcelas> GetById(int? id);
         Task<IEnumerable<DashCategoriasViewEntity>> GetChartDashCategoriasParcelas(int ano, int mes);
+        Task<IEnumerable<DashContasViewEntity>> GetChartDashContasParcelas(int ano, int mes);
 
         void Add(Parcelas parcelas);
         void Update(Parcelas parcelas);

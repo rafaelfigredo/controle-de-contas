@@ -57,6 +57,28 @@ namespace ControleContas.Application.Services
             foreach (DashCategoriasViewEntity item in result)
             {
                 chart.Categorias.Add(item.NomeCategoria);
+                chart.Cores.Add(item.Cor);
+                chart.Valores.Add(item.Valor);
+            }
+
+            return chart;
+        }
+
+        public async Task<ChartDashContas> GetChartDashContas()
+        {
+            DateTime today = DateTime.Today;
+
+            ChartDashContas chart = new ChartDashContas();
+            chart.Ano = today.Year;
+            chart.Mes = today.Month;
+
+            IEnumerable<DashContasViewEntity> result = await _parcelasRepository.GetChartDashContasParcelas(chart.Ano, chart.Mes);
+            result = result.OrderBy(x => x.NomeConta).ThenBy(x => x.IdConta).ToList();
+
+            foreach (DashContasViewEntity item in result)
+            {
+                chart.Contas.Add(item.NomeConta);
+                chart.Cores.Add(item.Cor);
                 chart.Valores.Add(item.Valor);
             }
 

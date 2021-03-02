@@ -7,5 +7,6 @@ namespace ControleContas.Application.Interfaces
     {
         Task<DashboardViewModel> GetDashboard();
         Task<ChartDashCatogorias> GetChartDashCatogorias();
+        Task<ChartDashContas> GetChartDashContas();
     }
 }

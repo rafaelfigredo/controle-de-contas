@@ -1,57 +1,53 @@
 ﻿$(document).ready(function () {
     getDataChartCategorias(urlChartCategorias);
+    getDataChartContas(urlChartContas);
 });
+
+function getDataChartContas(url) {
+    $.ajax({
+        type: "GET",
+        url: url
+    }).done(function (obj) {
+        renderDoughnutChart('#chartContas', obj.contas, obj.cores, obj.valores);
+        $('#tituloChartContas').text('Contas - ' + obj.descricao);
+    }).fail(function (jqXHR, textStatus, msg) {
+        alert('Ocorreu um erro!');
+    });
+}
 
 function getDataChartCategorias(url) {
     $.ajax({
         type: "GET",
         url: url
     }).done(function (obj) {
-        renderChart(obj.categorias, obj.valores, obj.descricao);
+        renderDoughnutChart('#chartCategorias', obj.categorias, obj.cores, obj.valores);
+        $('#tituloChartCategorias').text('Categorias - ' + obj.descricao);
     }).fail(function (jqXHR, textStatus, msg) {
         alert('Ocorreu um erro!');
     });
 }
 
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function getRandomColor(transparencia) {
-    var r = getRandomInt(0, 255);
-    var g = getRandomInt(0, 255);
-    var b = getRandomInt(0, 255);
-
-    var arrayColor = { r: r, g: g, b: b, color: 'rgba(' + r + ',' + g + ',' + b + ',' + transparencia + ')' };
-    return arrayColor;
-}
-
-function returnRGBColor(r, g, b, transparencia) {
-    return 'rgba(' + r + ',' + g + ',' + b + ',' + transparencia + ')';
-}
-
-function getArrayColors(data) {
+function getArrayColors(cores) {
     var backgroundColor = [];
     var borderColor = [];
 
-    $(data).each(function (index) {
-        var arrayColor = getRandomColor(0.6);
+    $(cores).each(function (index) {
+        var hex = cores[index];
+        var rgbColor = hexToRgb(hex);
 
-        var color = arrayColor.color;
+        var color = returnRGBColor(rgbColor.r, rgbColor.g, rgbColor.b, 0.75);
         backgroundColor.push(color);
-        var border = returnRGBColor(arrayColor.r, arrayColor.g, arrayColor.b, 1);
+
+        var border = returnRGBColor(rgbColor.r, rgbColor.g, rgbColor.b, 1);
         borderColor.push(border);
     });
 
     return { backgroundColor: backgroundColor, borderColor: borderColor }
 }
 
-function renderChart(labels, data, titulo) {
-    $('#tituloChartCategorias').text('Categorias - ' + titulo);
-    colors = getArrayColors(data);
-    var ctx = $('#chartCategorias');
+function renderDoughnutChart(chartId, labels, cores, data) {
+    colors = getArrayColors(cores);
+    var ctx = $(chartId);
     var chart = new Chart(ctx, {
         type: 'doughnut',
         data: {

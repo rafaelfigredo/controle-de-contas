@@ -27,5 +27,12 @@ namespace MVCWebApp.Controllers
             ChartDashCatogorias result = await _dashboardService.GetChartDashCatogorias();
             return Json(result);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> ChartContas()
+        {
+            ChartDashContas result = await _dashboardService.GetChartDashContas();
+            return Json(result);
+        }
     }
 }

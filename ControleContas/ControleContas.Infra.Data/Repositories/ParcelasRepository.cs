@@ -58,11 +58,29 @@ namespace ControleContas.Infra.Data.Repositories
                 .Include(x => x.Lancamentos.Categorias)
                 .Where(x => x.MesCobranca == mes)
                 .Where(x => x.AnoCobranca == ano)
-                .GroupBy(t => new { t.Lancamentos.Categorias.Id, t.Lancamentos.Categorias.Nome })
+                .GroupBy(t => new { t.Lancamentos.Categorias.Id, t.Lancamentos.Categorias.Nome, t.Lancamentos.Categorias.Cor })
                 .Select(gp => new DashCategoriasViewEntity
                 {
                     IdCategoria = gp.Key.Id,
                     NomeCategoria = gp.Key.Nome,
+                    Cor = gp.Key.Cor,
+                    Valor = gp.Sum(x => x.ParcelaValor)
+                })
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<DashContasViewEntity>> GetChartDashContasParcelas(int ano, int mes)
+        {
+            return await _context.Parcelas
+                .Include(x => x.Lancamentos.Categorias)
+                .Where(x => x.MesCobranca == mes)
+                .Where(x => x.AnoCobranca == ano)
+                .GroupBy(t => new { t.Lancamentos.Contas.Id, t.Lancamentos.Contas.Nome, t.Lancamentos.Contas.Cor })
+                .Select(gp => new DashContasViewEntity
+                {
+                    IdConta = gp.Key.Id,
+                    NomeConta = gp.Key.Nome,
+                    Cor = gp.Key.Cor,
                     Valor = gp.Sum(x => x.ParcelaValor)
                 })
                 .ToListAsync();
