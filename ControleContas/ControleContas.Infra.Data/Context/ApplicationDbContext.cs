@@ -1,16 +1,16 @@
 ﻿using ControleContas.Domain.Entities;
 using ControleContas.Infra.Data.EntityConfigurations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ControleContas.Infra.Data.Context
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
+
         public DbSet<Categorias> Categorias { get; set; }
         public DbSet<Contas> Contas { get; set; }
         public DbSet<ContasTipos> ContasTipos { get; set; }

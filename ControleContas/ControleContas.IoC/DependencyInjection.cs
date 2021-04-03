@@ -20,10 +20,12 @@ namespace ControleContas.IoC
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<UsersDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<UsersDbContext>();
 
             services.AddScoped<IDropdownRepository, DropdownRepository>();
             services.AddScoped<IDropdownService, DropdownService>();
